@@ -89,11 +89,29 @@ SELECT sale.id,sale.department,sale.revenue,(sale.cost*SUM(restock.quantity)) AS
 FROM (
         SELECT products.id,products.department,products.price,SUM(sales.quantity)AS sales,(products.price*SUM(sales.quantity))AS revenue,products.cost
         FROM products
-        LEFT JOIN sales on sales.product_id=products.id
+        left JOIN sales on sales.product_id=products.id
         GROUP BY  products.id)AS sale
 
-  LEFT JOIN restock on restock.product_id=sale.id
+  left JOIN restock on restock.product_id=sale.id
 GROUP by  sale.id
+
+
+
+-- how to comibine sales restock and inventory
+USE bamazon_db;
+select sale.department,SUM(sale.revenue)AS Total_Revenue,SUM(sale.expense) As Total_Expense,SUM(sale.Total_Return) As Total_Return
+FROM(SELECT sale.id,sale.department,sale.revenue,(sale.cost*SUM(restock.quantity)) AS expense,(sale.revenue - (sale.cost*SUM(restock.quantity)))AS Total_Return
+      FROM (
+        SELECT products.id,products.department,products.price,SUM(sales.quantity)AS sales,(products.price*SUM(sales.quantity))AS revenue,products.cost
+        FROM products
+        left JOIN sales on sales.product_id=products.id
+        GROUP BY  products.id)AS sale
+
+  left JOIN restock on restock.product_id=sale.id
+GROUP by  sale.id) AS sale
+
+GROUP BY sale.department
+
 
 -- ------------------------------------------------
 

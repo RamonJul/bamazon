@@ -1,5 +1,6 @@
 var connection=require("../Connection")
 var table=require("easy-table")
+var fs=require("fs")
 
 var view={
     generic_view:function(callback){
@@ -34,6 +35,26 @@ var view={
         callback()
     })
 
+    },
+
+    sale:function(callback){
+        var t= new table
+        fs.readFile(`sales_command.txt`,`utf8`,function(err,data){
+            connection.query(data,function(err,res){
+                res.forEach(element => {
+                    t.cell(`Department`,element.department)
+                    t.cell(`Sales`,element.Total_Revenue)
+                    t.cell(`Expense`,element.Total_Expense)
+                    t.cell(`Return`,element.Total_Return)
+                    t.newRow()
+                });
+                console.log(t.toString())
+                callback()
+            })
+
+        })
     }
 }
+
 module.exports=view
+
