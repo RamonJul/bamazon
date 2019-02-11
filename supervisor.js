@@ -1,38 +1,39 @@
 var inquire=require("inquirer")
 var view=require("./sql functions/view")
-var inventory=require("./sql functions/transaction")
-var table=require("./sql functions/table_manipulaton")
-console.log(table)
+var prompt=require("./prompts")
+var fs=require("fs")
 var task=""
-supper()
+supervisor()
 
-function supper(){
+function supervisor(){
 
     switch(task){
 
         case"view_sales":
             task=""
-            view.sale(function(){supper()})
+            view.sale(function(){supervisor()})
             break;
   
         case"add a department":
             task=""
-            view.generic_view(function(){manager()})
-            break;
-
-
-        default:
-            inquire.prompt([
-                {
-                    type:"list",
-                    message:"what woud you like to do",
-                    choices:["view_sales","add a department"],
-                    name:"task"
+            inquire.prompt(prompt.super.add_department).then(response=>{
+                if(response.sure){
+                    fs.appendFile("departments.txt",`,${response.department}`,function(err,res){
+                        console.log(err)
+                    })
+                    task=""
                 }
-            ]).then(response=>{
+                else{
+                    task="add a department"
+                }
+                supervisor()
+            })
+            break;
+        default:
+            inquire.prompt(prompt.super.task).then(response=>{
         
                     task=response.task
-                    supper()
+                    supervisor()
             })
             break;
     }

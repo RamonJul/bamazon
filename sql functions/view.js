@@ -1,12 +1,15 @@
 var connection=require("../Connection")
 var table=require("easy-table")
+var product_list=require("./product_list")
 var fs=require("fs")
 
 var view={
     generic_view:function(callback){
     var t= new table
+    product_list.reset()
     connection.query("SELECT * FROM products",function(err,res){
         res.forEach(element => {
+            product_list.create_list(element)
             t.cell(`Product ID`,element.id)
             t.cell(`Product Name`,element.product_name)
             t.cell(`Department`,element.department)
@@ -15,6 +18,7 @@ var view={
             t.newRow()
         });
         console.log(t.toString())
+    
         callback()
     })
 },
@@ -39,7 +43,8 @@ var view={
 
     sale:function(callback){
         var t= new table
-        fs.readFile(`sales_command.txt`,`utf8`,function(err,data){
+        fs.readFile(`./sql functions/sales_command.txt`,`utf8`,function(err,data){
+            console.log(data)
             connection.query(data,function(err,res){
                 res.forEach(element => {
                     t.cell(`Department`,element.department)
