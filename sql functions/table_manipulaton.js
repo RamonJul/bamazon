@@ -1,4 +1,4 @@
-var connection=require("../Connection")
+var connection=require("./Connection")
 
 var new_product=function(input) {
 this.product_name=input.product_name

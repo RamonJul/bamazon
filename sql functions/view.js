@@ -1,4 +1,4 @@
-var connection=require("../Connection")
+var connection=require("./Connection")
 var table=require("easy-table")
 var product_list=require("./product_list")
 var fs=require("fs")

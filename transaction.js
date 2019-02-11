@@ -1,6 +1,6 @@
 var inquire = require("inquirer")
-var prompt = require("./../prompts")
-var product_list = require("./product_list")
+var prompt = require("./prompts")
+var product_list = require("./sql functions/product_list")
 
 var inventory = {
 user: "",

@@ -1,4 +1,4 @@
-var connection=require("../Connection")
+var connection=require("./Connection")
 
 var product=function(input) {
 this.id=parseInt(input.id)

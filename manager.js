@@ -1,6 +1,6 @@
 var inquire=require("inquirer")
 var view=require("./sql functions/view")
-var inventory=require("./sql functions/transaction")
+var inventory=require("./transaction")
 var table=require("./sql functions/table_manipulaton")
 var prompt=require("./prompts")
 var task="view"

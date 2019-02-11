@@ -1,5 +1,5 @@
 var product_obj = require("./product")
-var connection = require("../Connection")
+var connection = require("./Connection")
 var product_list = {
     products: [],
     stock: 0,
