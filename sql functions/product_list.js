@@ -4,6 +4,7 @@ var product_list = {
     products: [],
     stock: 0,
     id: 0,
+    amount:0,
     reset: function () {
         this.products = []
     },
@@ -26,19 +27,16 @@ var product_list = {
         var availble = false
         if (this.stock >= amount) {
             this.stock -= amount
+            this.amount=amount
             availble = true
         }
         return availble;
     },
     restock: function (amount) {
-        console.log("amount")
         this.stock += amount
+        this.amount=amount
     },
     update: function () {
-        console.log("update")
-        console.log(this.stock)
-
-        console.log(this.id)
         connection.query("Update products SET ? WHERE ?", [{
                 quantity: this.stock,
             },
@@ -59,7 +57,8 @@ var product_list = {
         }
         connection.query(`INSERT INTO ${table} SET?`, {
                 product_id: this.id,
-                quantity: this.quantity
+
+                quantity: this.amount
             },
             function (err, res) {})
     }
