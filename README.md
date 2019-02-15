@@ -25,12 +25,16 @@ In this level the only choice the user gets is to view the products and the prom
 For this level the user has the following options
 
 ### View
-For this option the user sees the same table as the 
+For this option the user sees the same table as the customer. The only addage is that they would also see the cost of the products
+
 ### Filtered View
+This option prompts the user to enter an upper limit and the code will return products with quantity below that
 
 ### Restock
+This option allows the user to restock how a specific product
 
 ### Add new Product
+This option will enter a new prodcut into the table
 
 ## Supervisor Level
 
