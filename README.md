@@ -31,7 +31,7 @@ For this option the user sees the same table as the customer. The only addage is
 This option prompts the user to enter an upper limit and the code will return products with quantity below that
 
 ### Restock
-This option allows the user to restock how a specific product
+This option allows the user to restock specific product
 
 ### Add new Product
 This option will enter a new prodcut into the table
@@ -44,5 +44,5 @@ This option shows the total revenue per department
 
 ### Add department
 
-This option prompts the user for the name of the new department
+This option prompts the user for the name of the new department,which will update the department.txt
 
