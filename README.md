@@ -38,3 +38,11 @@ This option will enter a new prodcut into the table
 
 ## Supervisor Level
 
+### View Sales
+
+This option shows the total revenue per department
+
+### Add department
+
+This option prompts the user for the name of the new department
+
