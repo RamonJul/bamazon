@@ -4,7 +4,7 @@ var product_list=require("./product_list")
 var fs=require("fs")
 
 var view={
-    generic_view:function(callback){
+    generic_view:function(user,callback){
     var t= new table
     product_list.reset()
     connection.query("SELECT * FROM products",function(err,res){
@@ -15,6 +15,9 @@ var view={
             t.cell(`Department`,element.department)
             t.cell(`Price($)`,element.price)
             t.cell(`Quantity`,element.quantity)
+            if(user==="manager"){
+            t.cell(`Cost`,element.cost)   
+            }
             t.newRow()
         });
         console.log(t.toString())

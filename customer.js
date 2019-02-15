@@ -9,7 +9,7 @@ switch(task){
 
     case"view":
     //present the data
-    view.generic_view( function(){ 
+    view.generic_view("user", function(){ 
     inquire.prompt(prompt.customer.greeting).then(function(response){
         if(response.buying){
             task="shop"
@@ -28,12 +28,15 @@ switch(task){
     case"complete":
     inquire.prompt(prompt.customer.end).then(function(response){
         if(response.continue){
-            view.generic_view(function(){
+            view.generic_view("user",function(){
                 task="shop"
                 shopping()
             })
      
-        }2
+        }
+        else{
+            break;
+        }
     
     })
     break;

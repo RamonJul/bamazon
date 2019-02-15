@@ -11,10 +11,10 @@ function manager(){
 
         case"view":
             task=""
-            view.generic_view(function(){manager()})
+            view.generic_view("manager",function(){manager()})
             break;
         case"low inventory":
-            inquire.prompt().then(response=>{
+            inquire.prompt(prompt.manager.upper_limit).then(response=>{
                 task=""
                 view.low_inventory(response.filter,function(){manager()})
             })
