@@ -47,7 +47,7 @@ var view={
     sale:function(callback){
         var t= new table
         fs.readFile(`./sql functions/sales_command.txt`,`utf8`,function(err,data){
-            console.log(data)
+
             connection.query(data,function(err,res){
                 res.forEach(element => {
                     t.cell(`Department`,element.department)

@@ -1,17 +1,15 @@
-
-use bamazon_db;
-
-select sale.department,SUM(sale.revenue)AS Total_Revenue,SUM(sale.expense) As Total_Expense,SUM(sale.Total_Return) As Total_Return
+SELECT sale.department,SUM(sale.revenue)AS Total_Revenue,SUM(sale.expense) AS Total_Expense,SUM(sale.Total_Return) AS Total_Return
 FROM(SELECT sale.id,sale.department,sale.revenue,(sale.cost*SUM(restock.quantity)) AS expense,(sale.revenue - (sale.cost*SUM(restock.quantity)))AS Total_Return
       FROM (
         SELECT products.id,products.department,products.price,
  SUM( ifnull(sales.quantity,0))AS sales,
  (products.price*SUM(ifnull(sales.quantity,0)))AS revenue,products.cost
         FROM products
-        left JOIN sales on sales.product_id=products.id
+        LEFT JOIN sales ON sales.product_id=products.id
         GROUP BY  products.id)AS sale
 
-  left JOIN restock on restock.product_id=sale.id
-GROUP by  sale.id) AS sale
+  LEFT JOIN restock ON restock.product_id=sale.id
+GROUP BY  sale.id) AS sale
 
 GROUP BY sale.department
+

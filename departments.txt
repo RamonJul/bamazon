@@ -1,1 +1,1 @@
-furniture,electronics,kitchen
+furniture,electronics,kitchen,sports
