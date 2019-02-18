@@ -14,9 +14,14 @@ this.enter=function(callback){
         quantity:this.quantity,
         cost:this.cost
     },function(err,res){
-        connection.query("SELECT COUNT(*) FROM products ",function(err,res){
+        connection.query("SELECT * FROM products ",function(err,res){
+           var obj=(res[(res.length-1)])
+            connection.query(`INSERT INTO restock SET?`, {
+                product_id: obj.id,
 
-            callback(res)
+                quantity: obj.quantity
+            },
+            function (err, res) {callback()})
             
         })
     }

@@ -34,8 +34,6 @@ function manager(){
 
                var product= new table(response)
                product.enter(function(input){
-
-                inventory.new_product(input,product.quantity)
                 manager()
 
                })
@@ -51,3 +49,4 @@ function manager(){
     }
         
 }
+

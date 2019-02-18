@@ -34,11 +34,9 @@ switch(task){
             })
      
         }
-        else{
-            break;
-        }
     
     })
     break;
 }
 }
+

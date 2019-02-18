@@ -21,7 +21,7 @@ var prompts={
             {
                 type:"list",
                 message:"what woud you like to do",
-                choices:["view","low inventory","restock","add product","shop"],
+                choices:["view","low inventory","restock","add product"],
                 name:"task"
             }
         ],
